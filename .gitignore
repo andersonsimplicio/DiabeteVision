@@ -19,7 +19,7 @@ db.sqlite3
 *.sqlite3
 
 # Arquivos de mídia (imagens, uploads, etc.) - Ajuste conforme necessário
-media/
+#
 
 # Dependências de pacotes Python
 # Você pode ajustar isso com base nas suas dependências específicas
