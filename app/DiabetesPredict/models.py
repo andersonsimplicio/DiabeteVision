@@ -19,7 +19,7 @@ class Paciente(Base):
     cpf = models.CharField(verbose_name='CPF',max_length=11)
     
     def __str__(self):
-        return f"Paciente {self.Id}"
+        return f"Paciente {self.Id} - {self.name_paciente}"
 
     class Meta:
         verbose_name = 'Paciente'
@@ -55,16 +55,15 @@ class Exame(Base):
     
    
     def __str__(self):
-        return f"Paciente {self.Paciente.name_paciente} Exame:{self.Id} - Diabético: {self.Diabetic}" 
+        return f" Exame ID:{self.Id} - Paciente {self.Paciente.name_paciente} - Diabético: {self.Diabetic}" 
 
  
-class ConsultaFeedBack(models.Model):
+class ConsultaFeedBack(Base):
     '''
     Essa classe se destina a armazenar a opinião do do médico especializado, os dados gerados aqui serão 
     utilizados para o treinamento e aperfeiçoamento do modelo de machine learning
     '''
-    IdPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name='Paciente')
-    DataConsulta = models.DateField(verbose_name='Data da Consulta')  
+    IdPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name='Paciente') 
     Exame = models.ForeignKey(Exame, on_delete=models.CASCADE, verbose_name='Exame')
     FeedBackDiabetci = models.IntegerField(verbose_name='Diabético',default=0,blank=True,null=True)
 
@@ -73,7 +72,7 @@ class ConsultaFeedBack(models.Model):
         verbose_name_plural = 'Consultas'
     
     def __str__(self):
-        return f"Paciente {self.IdPaciente.name_paciente} - Exame:{self.Exame} - Diabético: {self.Exame}"
+        return f"Paciente {self.IdPaciente.name_paciente} - Exame:{self.Exame} - Diabético: {self.Exame} - Data: {self.DataCriacao}"
 
 
 
