@@ -1,0 +1,33 @@
+# Arquivos de sistema
+__pycache__/
+*.py[cod]
+
+# Arquivos de ambiente virtual (por exemplo, virtualenv, venv, etc.)
+env/
+venv/
+.vscode/
+.env
+
+# Arquivos de log e banco de dados SQLite
+*.log
+db.sqlite3
+
+# Arquivos de configuração de desenvolvimento
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Arquivos de mídia (imagens, uploads, etc.) - Ajuste conforme necessário
+media/
+
+# Dependências de pacotes Python
+# Você pode ajustar isso com base nas suas dependências específicas
+# Certifique-se de incluir seu arquivo requirements.txt
+# Exemplo: requirements.txt
+# pipenv.lock
+# Pipfile.lock
+# pip-log.txt
+# venv/
+# env/
+__pycache__/
