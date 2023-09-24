@@ -1,7 +1,7 @@
 # Arquivos de sistema
 __pycache__/
 *.py[cod]
-
+migrations/
 # Arquivos de ambiente virtual (por exemplo, virtualenv, venv, etc.)
 env/
 venv/
@@ -17,6 +17,7 @@ db.sqlite3
 *.pyo
 *.db
 *.sqlite3
+.vscode
 
 # Arquivos de mídia (imagens, uploads, etc.) - Ajuste conforme necessário
 #
