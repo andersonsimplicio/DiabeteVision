@@ -49,6 +49,9 @@ class Exame(Base):
     Colesterol = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Colesterol LDL')
     HbA1c = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='HbA1c')
     Diabetic = models.IntegerField(verbose_name='Diabético',default=0,blank=True,null=True)
+
+    Feedback = models.IntegerField(verbose_name='Feedback', default=0, choices=[(0, '0'), (1, '1')])
+    HouveFeedback = models.BooleanField(verbose_name='Houve Feedback', default=False)
     class Meta:
         verbose_name = 'Exame'
         verbose_name_plural = 'Exames'
@@ -58,21 +61,7 @@ class Exame(Base):
         return f" Exame ID:{self.Id} - Paciente {self.Paciente.name_paciente} - Diabético: {self.Diabetic}" 
 
  
-class ConsultaFeedBack(Base):
-    '''
-    Essa classe se destina a armazenar a opinião do do médico especializado, os dados gerados aqui serão 
-    utilizados para o treinamento e aperfeiçoamento do modelo de machine learning
-    '''
-    IdPaciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name='Paciente') 
-    Exame = models.ForeignKey(Exame, on_delete=models.CASCADE, verbose_name='Exame')
-    FeedBackDiabetci = models.IntegerField(verbose_name='Diabético',default=0,blank=True,null=True)
 
-    class Meta:
-        verbose_name = 'Consulta'
-        verbose_name_plural = 'Consultas'
-    
-    def __str__(self):
-        return f"Paciente {self.IdPaciente.name_paciente} - Exame:{self.Exame} - Diabético: {self.Exame} - Data: {self.DataCriacao}"
 
 
 

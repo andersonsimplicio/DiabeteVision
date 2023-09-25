@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Paciente, Exame, ConsultaFeedBack
+from .models import Paciente, Exame
 
 # Define a custom admin class for Paciente
 class PacienteAdmin(admin.ModelAdmin):
@@ -19,15 +19,9 @@ class ExameAdmin(admin.ModelAdmin):
     get_paciente_name.short_description = 'Nome do Paciente'
     get_paciente_name.admin_order_field = 'Paciente__name_paciente'
     
-# Define a custom admin class for ConsultaFeedBack
-class ConsultaFeedBackAdmin(admin.ModelAdmin):
-    list_display = ('IdPaciente', 'DataCriacao', 'Exame', 'FeedBackDiabetci')
-    list_filter = ('DataCriacao', 'FeedBackDiabetci')
-    search_fields = ('IdPaciente__name_paciente', 'Exame__Paciente__name_paciente', 'FeedBackDiabetci')
-    list_per_page = 20
 
 # Register the custom admin classes with the models
 admin.site.register(Paciente, PacienteAdmin)
 admin.site.register(Exame, ExameAdmin)
-admin.site.register(ConsultaFeedBack, ConsultaFeedBackAdmin)
+
 
