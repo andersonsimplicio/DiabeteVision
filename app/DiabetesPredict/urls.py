@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import (PacienteApiView,ExameApiView)
+from .views import (PacientesAPIView,ExameAPIView,PacienteAPIView)
 
 urlpatterns =[
-    path('pacientes',PacienteApiView.as_view(),name='pacientes'),
-    path('exames',ExameApiView.as_view(),name='exames'),
+    path('exames',ExameAPIView.as_view(),name='exames'),
+    path('pacientes',PacientesAPIView.as_view(),name='pacientes'),
+    path('pacientes/<str:cpf>/exames',PacienteAPIView.as_view(),name='paciente_exames   ')
 ]
