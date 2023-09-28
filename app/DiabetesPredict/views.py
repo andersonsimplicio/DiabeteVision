@@ -1,5 +1,8 @@
+from urllib.request import Request
 from django.http import Http404, QueryDict
+from rest_framework import status
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
 from rest_framework import generics
 from django.db.models import F
 from rest_framework.response  import Response
@@ -59,12 +62,14 @@ class ExameAPIView(generics.ListCreateAPIView):
         rf = Brain()
         previsao = rf.predict(avaliacao)
         if previsao is not None:
-            if isinstance(request.data, QueryDict):
-                request.data._mutable = True
-                request.data['Diabetic'] = int(previsao[0])  # type: ignore
-                return super().create(request, *args, **kwargs)
+            data = request.data.copy()
+            data['Diabetic'] = int(previsao[0])
+            adjusted_request = Request(request._request, data=data)  # type: ignore
+            response = super().create(adjusted_request, *args, **kwargs)
+            return response
+            
         else:
-            return super().create(request, *args, **kwargs)
+            return Response({'error': 'Previsão de diabetes não foi bem-sucedida.'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ExameFeedbackAPIView(generics.RetrieveUpdateDestroyAPIView):

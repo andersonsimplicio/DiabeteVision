@@ -33,6 +33,7 @@ class Exame(Base):
     Diabetic
     '''
     Paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='exames')
+    
     Pregnancies = models.IntegerField(
         verbose_name='Número de Gestações',
         default=0,
